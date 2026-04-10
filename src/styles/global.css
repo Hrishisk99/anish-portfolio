@@ -1,0 +1,485 @@
+/* ===== ROOT COLORS ===== */
+:root {
+  --bg: #0D1117;
+  --card: #161B22;
+  --border: #30363D;
+
+  --text: #E6EDF3;
+  --muted: #8B949E;
+
+  --gradient: linear-gradient(135deg, #8534F3, #B870FF, #FF4D6D);
+}
+
+[data-theme="light"] {
+  --bg: #F8FAFC;
+  --card: #FFFFFF;
+  --border: #E2E8F0;
+
+  --text: #0F172A;
+  --muted: #64748B;
+
+  --gradient: linear-gradient(135deg, #6366F1, #A855F7, #EC4899);
+}
+
+/* ===== GLOBAL ===== */
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+  transition: 0.3s ease;
+}
+
+/* ===== LAYOUT ===== */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo a {
+  color: #B870FF;
+  text-decoration: none;
+}
+
+/* ===== THEME TOGGLE ===== */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.theme-toggle {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text);
+}
+
+.theme-toggle:hover {
+  border-color: #8534F3;
+}
+
+/* ===== MENU ===== */
+.menu {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: var(--card);
+  width: 200px;
+  display: none;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.menu a {
+  padding: 12px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.menu a:hover {
+  background: rgba(133, 52, 243, 0.2);
+}
+
+.menu.active {
+  display: flex;
+}
+
+/* ===== HERO ===== */
+.hero {
+  text-align: center;
+  padding: 120px 20px;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===== PROFILE (CLEAN GLOW) ===== */
+.profile-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(139, 92, 246, 0.8),
+    rgba(99, 102, 241, 0.5),
+    rgba(168, 85, 247, 0.3),
+    transparent 70%
+  );
+
+  filter: blur(50px);
+  z-index: 0;
+
+  animation: glow 4s ease-in-out infinite;
+}
+
+.profile-img {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+}
+
+/* Glow animation */
+@keyframes glow {
+  0% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+  100% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* ===== TEXT ===== */
+.role {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  color: #B870FF;
+}
+
+.hero-desc {
+  color: var(--muted);
+  max-width: 600px;
+  margin: 10px auto;
+  line-height: 1.6;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+  background: var(--gradient);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  color: white;
+  margin: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(133, 52, 243, 0.5);
+}
+
+.btn-outline {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  padding: 12px 24px;
+  border-radius: 10px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  border-color: #8534F3;
+  color: #B870FF;
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  padding: 80px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.section-title {
+  font-size: 34px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* ===== GRID ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+/* ===== CARD (USED FOR BOTH PROJECTS & SKILLS) ===== */
+.card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+/* Glow border */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1px;
+
+  background: linear-gradient(135deg, #8b5cf6, #a855f7, #ec4899);
+
+  -webkit-mask: 
+    linear-gradient(#000 0 0) content-box, 
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  opacity: 0;
+  transition: 0.3s;
+}
+
+/* Hover */
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 
+    0 0 25px rgba(139, 92, 246, 0.4),
+    0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== SKILLS ===== */
+.skills-list {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-badge {
+  padding: 6px 12px;
+  border-radius: 10px;
+
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+
+  color: #c084fc;
+  font-size: 12px;
+
+  transition: all 0.25s ease;
+}
+
+.skill-badge:hover {
+  background: rgba(139, 92, 246, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+}
+
+/* ===== PROJECT TEXT ===== */
+.project-desc {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.tech-badge {
+  display: inline-block;
+  background: rgba(139, 92, 246, 0.15);
+  color: #c084fc;
+  padding: 6px 10px;
+  margin: 5px 6px 0 0;
+  border-radius: 8px;
+  font-size: 12px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+/* ===== EXPERIENCE ===== */
+.experience-date {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.experience-role {
+  font-weight: 500;
+  color: #c084fc;
+  margin-bottom: 10px;
+}
+
+.experience-points {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.experience-points li {
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ===== CONTACT SECTION ===== */
+.contact-section {
+  padding-top: 40px;   /* reduce top space */
+  padding-bottom: 80px;
+  text-align: center;
+}
+
+/* Inner content */
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Text */
+.contact-text {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* Buttons */
+.contact-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary:hover,
+.btn-outline:hover {
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center;
+  padding: 20px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  background: var(--card);
+}
+
+/* ===== MOBILE RESPONSIVENESS ===== */
+@media (max-width: 768px) {
+
+  /* HERO */
+  .hero {
+    padding: 70px 15px;
+  }
+
+  h1 {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+
+  .role {
+    font-size: 1rem;
+  }
+
+  .hero-desc {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+
+  /* PROFILE IMAGE */
+  .profile-img {
+    width: 170px;
+    height: 170px;
+  }
+
+  .profile-wrapper::before {
+    width: 260px;
+    height: 260px;
+    filter: blur(35px);
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 60px 15px;
+  }
+
+  .section-title {
+    font-size: 24px;
+  }
+
+  /* GRID → SINGLE COLUMN */
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* CARDS */
+  .card {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .card h3 {
+    font-size: 16px;
+  }
+
+  /* TEXT */
+  .project-desc,
+  .experience-points li {
+    font-size: 13px;
+  }
+
+  /* BADGES */
+  .skill-badge,
+  .tech-badge {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+
+  /* BUTTONS */
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+
+}
